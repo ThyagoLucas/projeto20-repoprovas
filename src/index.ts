@@ -5,7 +5,6 @@ import cors from 'cors';
 import routers from './routers/index.js';
 import errorHandler from './Middlewares/errorHandlerMiddleware.js';
 
-
 dotenv.config();
 
 const server = Express();
@@ -15,6 +14,5 @@ server.use(cors());
 server.use(json());
 server.use(routers);
 server.use(errorHandler);
-
 
 server.listen(port, ()=>{ console.log(`Server is running on port ${port}`)});
