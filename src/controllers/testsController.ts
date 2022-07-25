@@ -14,5 +14,16 @@ export async function add(req: Request, res: Response){
 
 export async function getAll(req: Request, res: Response){
 
-    
+    const query = req.query;
+
+    let tests = {};
+
+    if( query.groupBy === 'disciplines' )[
+        tests = await testService.getAllByDisciplines()
+    ]
+    if( query.groupBy === 'teachers' ){
+        
+    }
+
+    res.status(201).send(tests);
 }

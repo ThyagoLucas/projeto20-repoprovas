@@ -32,24 +32,24 @@ async function main(){
 
     await prisma.discipline.createMany({
         data:[
-            {name: "HTML e CSS",term_id:1},
-            {name: "JavaScript",term_id:2},
-            {name: "React",term_id:3},
-            {name: "Humildade",term_id:1},
-            {name: "Planejamento",term_id:2},
-            {name: "Autoconfiança",term_id:3}
+            {name: "HTML e CSS",termId:1},
+            {name: "JavaScript",termId:2},
+            {name: "React",termId:3},
+            {name: "Humildade",termId:1},
+            {name: "Planejamento",termId:2},
+            {name: "Autoconfiança",termId:3}
         ]
     })
 
-    await prisma.teacher_discipline.createMany({
+    await prisma.teacherDiscipline.createMany({
         data:[
 
-            {teacher_id:1, discipline_id:1},
-            {teacher_id:1, discipline_id:2},
-            {teacher_id:1, discipline_id:3},
-            {teacher_id:2, discipline_id:4},
-            {teacher_id:2, discipline_id:5},
-            {teacher_id:2, discipline_id:6}
+            {teacherId:1, disciplineId:1},
+            {teacherId:1, disciplineId:2},
+            {teacherId:1, disciplineId:3},
+            {teacherId:2, disciplineId:4},
+            {teacherId:2, disciplineId:5},
+            {teacherId:2, disciplineId:6}
 
         ]
     })  

@@ -34,7 +34,7 @@ model Session{
 model Teacher{
   id              Int @id @default(autoincrement())
   name            String
-  rT_discipline   Teacher_discipline[] 
+  rT_discipline   TeacherDiscipline[] 
  
   @@map("teachers")
 }
@@ -50,7 +50,7 @@ model Term{
 model Category {
   id              Int @id @default(autoincrement())
   name            String
-  teste        Test[]
+  teste           Test[]
 
   @@map("categories")
 }
@@ -58,20 +58,20 @@ model Category {
 model Discipline{
   id          Int @id @default(autoincrement())
   name        String 
-  term_id     Int
-  term        Term @relation(fields: [term_id], references: [id])
-  teacher     Teacher_discipline[]
+  termId      Int
+  term        Term @relation(fields: [termId], references: [id])
+  teacher     TeacherDiscipline[]
 
   @@map("disciplines")
 }
 
-model Teacher_discipline{
+model TeacherDiscipline{
   id              Int @id @default(autoincrement())
-  teacher_id      Int
-  discipline_id   Int
-  discipline      Discipline @relation(fields: [discipline_id],references: [id])
-  teacher         Teacher @relation(fields: [teacher_id], references: [id])
-  teacherDiscipline Test[]
+  teacherId       Int
+  disciplineId    Int
+  discipline      Discipline @relation(fields: [disciplineId],references: [id])
+  teacher         Teacher @relation(fields: [teacherId], references: [id])
+  tests           Test[]
 
   @@map("teacher_discipline")
 }
@@ -80,11 +80,11 @@ model Test{
   id                      Int @id @default(autoincrement())
   name                    String
   pdfUrl                  String
-  teacher_discipline      Int
-  category_id             Int
-  createdAt               DateTime @default(now())
-  teacherId               Teacher_discipline @relation(fields: [teacher_discipline],references: [id])
-  category                Category  @relation(fields: [category_id],references: [id])
+  categoryId              Int
+  teacherDiscipline       Int
+
+  category                Category  @relation(fields: [categoryId],references: [id])
+  teacher                 TeacherDiscipline @relation(fields: [teacherDiscipline],references: [id])
 
   @@map("tests")
 }

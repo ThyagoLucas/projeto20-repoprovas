@@ -1,10 +1,10 @@
-import { CreatTest, insert } from "../repositories/testRepository.js";
+import { CreatTest, findAllTestsBydiscipline, insert } from "../repositories/testRepository.js";
 
 
 export async function add (test: CreatTest){
-    
-    test.category_id = Number(test.category_id);
-    test.teacher_discipline = Number(test.teacher_discipline);
+
+    test.categoryId = Number(test.categoryId);
+    test.teacherDiscipline = Number(test.teacherDiscipline);
 
     await insert(test);
 
@@ -13,7 +13,9 @@ export async function add (test: CreatTest){
 
 export async function getAllByDisciplines(){
 
-    
+    const tests = await findAllTestsBydiscipline();
+
+    return tests;
 
 }
 
