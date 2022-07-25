@@ -11,7 +11,13 @@ export async function add (test: CreatTest){
 }
 
 
-export async function getAll(){
+export async function getAllByDisciplines(){
+
+    
+
+}
+
+export async function getAllByTeachers(){
 
     
 

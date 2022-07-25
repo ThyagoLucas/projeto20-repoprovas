@@ -11,5 +11,4 @@ authentication.post('/sign-up', schemaValidations(registerSchema), register);
 authentication.post('/sign-in', schemaValidations(loginSchema), login);
 
 
-
 export default authentication;

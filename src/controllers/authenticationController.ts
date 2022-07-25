@@ -4,11 +4,14 @@ import * as authService from "../services/authenticationService.js"
 
 export async function register(req: Request, res: Response) {
  
-  const userTocreate = req.body as CreateUser;
-  console.log(userTocreate);
+  const { email, password } = req.body;
+
+  const userTocreate = {email:email, password:password} as CreateUser;
+
   await authService.register(userTocreate);
 
   res.status(201).send('created');
+
 }
 
 export async function login(req: Request, res: Response) {
