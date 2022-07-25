@@ -27,6 +27,7 @@ export async function findSession( userId: number, token: string ){
     const session = await prisma.session.findFirst({where:{ userId:userId, token:token}})
     return session;
 }
+
 export async function deleteSession( token: string ){
 
     await prisma.session.deleteMany({where:{token:token}});

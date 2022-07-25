@@ -40,7 +40,7 @@ export async function login( email: string, password: string){
 
 export async function sesionConfirmate(token: string){
 
-    const verifyToken = userInfoByToken(token);
+    const verifyToken = await userInfoByToken(token);
 
     const session = await userRepository.findSession(verifyToken.userId, token)
 
