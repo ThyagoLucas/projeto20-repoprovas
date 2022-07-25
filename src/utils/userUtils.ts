@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import prisma from '../configs/database/database.js';
+import { deleteSession } from '../repositories/userRepository.js';
 
 dotenv.config();
 
@@ -14,16 +15,19 @@ export function tokenCreate(userId: number, email:string){
     return token;
 }
 
-export function userInfoByToken(token: string){
+export async function userInfoByToken(token: string){
 
     let user = {userId:null,email:null};
     try {
+        
         user = jwt.verify(token, process.env.JWT_SECRET);
 
         return user;
 
     } catch (error) {
-        throw {type:401, message:'expired token'}
+
+        await deleteSession(token);
+        throw {type:401, message:'expired token'};
     }
     
 }
