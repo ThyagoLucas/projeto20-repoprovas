@@ -6,10 +6,9 @@ import registerSchema from "../schemas/registerSchema.js";
 
 const authentication = Router();
 
-authentication.post('/signup', schemaValidations(registerSchema), register);
+authentication.post('/sign-up', schemaValidations(registerSchema), register);
 
-authentication.post('/signin', schemaValidations(loginSchema), login);
-
+authentication.post('/sign-in', schemaValidations(loginSchema), login);
 
 
 export default authentication;

@@ -12,7 +12,6 @@ datasource db {
 
 model User{
   id          Int @id @default(autoincrement())
-  name        String
   email       String @unique
   password    String  
   createdAt   DateTime @default(now())
@@ -35,8 +34,7 @@ model Session{
 model Teacher{
   id              Int @id @default(autoincrement())
   name            String
-  rTest           Test[]
-  rT_discipline   Teacher_discipline[] 
+  rT_discipline   TeacherDiscipline[] 
  
   @@map("teachers")
 }
@@ -52,7 +50,7 @@ model Term{
 model Category {
   id              Int @id @default(autoincrement())
   name            String
-  teste        Test[]
+  teste           Test[]
 
   @@map("categories")
 }
@@ -60,31 +58,33 @@ model Category {
 model Discipline{
   id          Int @id @default(autoincrement())
   name        String 
-  term_id     Int
-  term        Term @relation(fields: [term_id], references: [id])
-  teacher     Teacher_discipline[]
+  termId      Int
+  term        Term @relation(fields: [termId], references: [id])
+  teacher     TeacherDiscipline[]
 
   @@map("disciplines")
 }
 
-model Teacher_discipline{
+model TeacherDiscipline{
   id              Int @id @default(autoincrement())
-  teacher_id      Int
-  discipline_id   Int
-  discipline      Discipline @relation(fields: [discipline_id],references: [id])
-  teacher         Teacher @relation(fields: [teacher_id], references: [id])
+  teacherId       Int
+  disciplineId    Int
+  discipline      Discipline @relation(fields: [disciplineId],references: [id])
+  teacher         Teacher @relation(fields: [teacherId], references: [id])
+  tests           Test[]
 
   @@map("teacher_discipline")
 }
 
 model Test{
-  id              Int @id @default(autoincrement())
-  name            String
-  pdfUrl          String
-  teacher_id      Int
-  category_id     Int
-  teacherId       Teacher @relation(fields: [teacher_id],references: [id])
-  category        Category  @relation(fields: [category_id],references: [id])
+  id                      Int @id @default(autoincrement())
+  name                    String
+  pdfUrl                  String
+  categoryId              Int
+  teacherDiscipline       Int
+
+  category                Category  @relation(fields: [categoryId],references: [id])
+  teacher                 TeacherDiscipline @relation(fields: [teacherDiscipline],references: [id])
 
   @@map("tests")
 }
