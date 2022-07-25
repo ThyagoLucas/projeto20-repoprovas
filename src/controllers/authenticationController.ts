@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
+import { CreateUser } from "../repositories/userRepository.js";
 import * as authService from "../services/authenticationService.js"
 
 export async function register(req: Request, res: Response) {
  
-  const { name, email, password } = req.body;
-  await authService.register(name, email, password);
+  const userTocreate = req.body as CreateUser;
+  console.log(userTocreate);
+  await authService.register(userTocreate);
 
   res.status(201).send('created');
 }
@@ -14,7 +16,7 @@ export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   const { authorization } = req.headers
   const token = authorization?.replace('Bearer', '').trim();
-
+  console.log(token)
   let response = {};
   
   if(token){
